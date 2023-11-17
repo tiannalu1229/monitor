@@ -1,6 +1,7 @@
 package handle
 
 import (
+	conf "bot/client"
 	"bot/client/uni/data"
 	bot "bot/proto"
 	"context"
@@ -19,7 +20,7 @@ func InitHotPoolMap() {
 }
 
 func GetHotPool() []data.HotPoolData {
-	url := "http://8.210.97.145:5006/univ2/hot?dist=1d&level=5m&desc=true"
+	url := conf.Config.Hot.Uri
 	method := "GET"
 
 	client := &http.Client{}
@@ -71,8 +72,8 @@ func HotPoolHandle(pool []data.HotPoolData) {
 				bs := bot.NewBotService("bot", service.Client())
 				bs.Send(context.Background(), &bot.SendRequest{
 					Msg:    msg,
-					Token:  "",
-					ChatId: 0,
+					Token:  conf.Config.Hot.BotToken,
+					ChatId: conf.Config.Hot.ChatId,
 				})
 
 				HotPool[pool[i].CoinAddr] += 1

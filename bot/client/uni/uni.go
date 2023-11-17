@@ -1,12 +1,14 @@
 package main
 
 import (
+	conf "bot/client"
 	"bot/client/uni/handle"
 	"fmt"
 	"time"
 )
 
 func main() {
+	conf.InitConfig("./config.toml")
 	for {
 		fmt.Println("当前时间 : ", time.Now())
 		//newPair := pool.GetNewPair()
