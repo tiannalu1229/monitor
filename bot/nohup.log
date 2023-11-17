@@ -1,0 +1,5 @@
+2023-11-16 15:31:12  file=bot/main.go:48 level=info Starting [service] bot
+2023-11-16 15:31:12  file=v4@v4.10.2/service.go:99 level=info Transport [http] Listening on [::]:12001
+2023-11-16 15:31:12  file=v4@v4.10.2/service.go:99 level=info Broker [http] Connected to 127.0.0.1:50296
+2023-11-16 15:31:12  file=server/rpc_server.go:556 level=info Registry [mdns] Registering node: bot-b1cf7af1-5f4e-4f7e-b66f-81a2132bc46a
+2023-11-16 16:48:25  file=server/rpc_server.go:787 level=info Registry [mdns] Deregistering node: bot-b1cf7af1-5f4e-4f7e-b66f-81a2132bc46a

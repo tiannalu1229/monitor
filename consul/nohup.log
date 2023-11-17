@@ -1,0 +1,10 @@
+2023-11-16 14:37:16  file=consul/main.go:32 level=info Starting [service] consul-register
+2023-11-16 14:37:16  file=v4@v4.10.2/service.go:99 level=info Transport [http] Listening on [::]:12000
+2023-11-16 14:37:16  file=v4@v4.10.2/service.go:99 level=info Broker [http] Connected to 127.0.0.1:60846
+2023-11-16 14:37:16  file=server/rpc_server.go:556 level=info Registry [mdns] Registering node: consul-register-426dc740-5292-433c-9be1-b5f450a588f2
+开始注册服务
+开始注册服务
+开始注册服务
+开始注册服务
+2023-11-16 16:48:25  file=server/rpc_server.go:787 level=info Registry [mdns] Deregistering node: consul-register-426dc740-5292-433c-9be1-b5f450a588f2
+2023-11-16 16:48:25  file=runtime/asm_arm64.s:1172 level=info Broker [http] Disconnected from 127.0.0.1:60846

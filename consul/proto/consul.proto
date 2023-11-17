@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package consul;
+
+option go_package = "./proto;consul";
+
+service Consul {
+	rpc Call(CallRequest) returns (CallResponse) {}
+	rpc ClientStream(stream ClientStreamRequest) returns (ClientStreamResponse) {}
+	rpc ServerStream(ServerStreamRequest) returns (stream ServerStreamResponse) {}
+	rpc BidiStream(stream BidiStreamRequest) returns (stream BidiStreamResponse) {}
+	rpc RegisterServiceStream(RegisterServiceStreamRequest) returns (RegisterServiceStreamResponse) {}
+	rpc Deregister(DeregisterRequest) returns (DeregisterResponse) {}
+}
+
+message CallRequest {
+	string name = 1;
+}
+
+message CallResponse {
+	string msg = 1;
+}
+
+message ClientStreamRequest {
+	int64 stroke = 1;
+}
+
+message ClientStreamResponse {
+	int64 count = 1;
+}
+
+message ServerStreamRequest {
+	int64 count = 1;
+}
+
+message ServerStreamResponse {
+	int64 count = 1;
+}
+
+message BidiStreamRequest {
+	int64 stroke = 1;
+}
+
+message BidiStreamResponse {
+	int64 stroke = 1;
+}
+
+//message NewConsulStreamRequest {
+//	string addr = 1;
+//}
+//
+//message NewConsulStreamResponse {
+//	int64 count = 1;
+//}
+
+message RegisterServiceStreamRequest {
+	string addr = 1;
+	string serviceName = 2;
+	string ip = 3;
+	int64 port = 4;
+	string tag = 5;
+}
+
+message RegisterServiceStreamResponse {
+	int64 count = 1;
+}
+
+message DeregisterRequest {
+	string addr = 1;
+	string serviceID = 2;
+}
+
+message DeregisterResponse {
+	int64 count = 1;
+}

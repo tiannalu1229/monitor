@@ -1,0 +1,2 @@
+go-micro new service [name]
+make init proto update tidy
