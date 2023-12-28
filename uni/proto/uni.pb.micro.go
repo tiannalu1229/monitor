@@ -6,6 +6,7 @@ package uni
 import (
 	fmt "fmt"
 	proto "google.golang.org/protobuf/proto"
+	_ "google.golang.org/protobuf/types/known/timestamppb"
 	math "math"
 )
 
@@ -40,6 +41,15 @@ type UniService interface {
 	ClientStream(ctx context.Context, opts ...client.CallOption) (Uni_ClientStreamService, error)
 	ServerStream(ctx context.Context, in *ServerStreamRequest, opts ...client.CallOption) (Uni_ServerStreamService, error)
 	BidiStream(ctx context.Context, opts ...client.CallOption) (Uni_BidiStreamService, error)
+	GetFlashUser(ctx context.Context, in *GetFlashUserRequest, opts ...client.CallOption) (*GetFlashUserResponse, error)
+	SaveFlashUser(ctx context.Context, in *SaveFlashUserRequest, opts ...client.CallOption) (*SaveFlashUserResponse, error)
+	GetFlashSwap(ctx context.Context, in *GetFlashSwapRequest, opts ...client.CallOption) (*GetFlashSwapResponse, error)
+	Sign(ctx context.Context, in *SignRequest, opts ...client.CallOption) (*SignResponse, error)
+	CheckSign(ctx context.Context, in *CheckSignRequest, opts ...client.CallOption) (*CheckSignResponse, error)
+	Approve(ctx context.Context, in *ApproveRequest, opts ...client.CallOption) (*ApproveResponse, error)
+	Flash(ctx context.Context, in *FlashRequest, opts ...client.CallOption) (*FlashResponse, error)
+	FlashBuy(ctx context.Context, in *FlashBuyRequest, opts ...client.CallOption) (*FlashBuyResponse, error)
+	FlashBuyAuto(ctx context.Context, in *FlashBuyAutoRequest, opts ...client.CallOption) (*FlashBuyAutoResponse, error)
 }
 
 type uniService struct {
@@ -220,6 +230,96 @@ func (x *uniServiceBidiStream) Recv() (*BidiStreamResponse, error) {
 	return m, nil
 }
 
+func (c *uniService) GetFlashUser(ctx context.Context, in *GetFlashUserRequest, opts ...client.CallOption) (*GetFlashUserResponse, error) {
+	req := c.c.NewRequest(c.name, "Uni.GetFlashUser", in)
+	out := new(GetFlashUserResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *uniService) SaveFlashUser(ctx context.Context, in *SaveFlashUserRequest, opts ...client.CallOption) (*SaveFlashUserResponse, error) {
+	req := c.c.NewRequest(c.name, "Uni.SaveFlashUser", in)
+	out := new(SaveFlashUserResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *uniService) GetFlashSwap(ctx context.Context, in *GetFlashSwapRequest, opts ...client.CallOption) (*GetFlashSwapResponse, error) {
+	req := c.c.NewRequest(c.name, "Uni.GetFlashSwap", in)
+	out := new(GetFlashSwapResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *uniService) Sign(ctx context.Context, in *SignRequest, opts ...client.CallOption) (*SignResponse, error) {
+	req := c.c.NewRequest(c.name, "Uni.Sign", in)
+	out := new(SignResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *uniService) CheckSign(ctx context.Context, in *CheckSignRequest, opts ...client.CallOption) (*CheckSignResponse, error) {
+	req := c.c.NewRequest(c.name, "Uni.CheckSign", in)
+	out := new(CheckSignResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *uniService) Approve(ctx context.Context, in *ApproveRequest, opts ...client.CallOption) (*ApproveResponse, error) {
+	req := c.c.NewRequest(c.name, "Uni.Approve", in)
+	out := new(ApproveResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *uniService) Flash(ctx context.Context, in *FlashRequest, opts ...client.CallOption) (*FlashResponse, error) {
+	req := c.c.NewRequest(c.name, "Uni.Flash", in)
+	out := new(FlashResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *uniService) FlashBuy(ctx context.Context, in *FlashBuyRequest, opts ...client.CallOption) (*FlashBuyResponse, error) {
+	req := c.c.NewRequest(c.name, "Uni.FlashBuy", in)
+	out := new(FlashBuyResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *uniService) FlashBuyAuto(ctx context.Context, in *FlashBuyAutoRequest, opts ...client.CallOption) (*FlashBuyAutoResponse, error) {
+	req := c.c.NewRequest(c.name, "Uni.FlashBuyAuto", in)
+	out := new(FlashBuyAutoResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Uni service
 
 type UniHandler interface {
@@ -227,6 +327,15 @@ type UniHandler interface {
 	ClientStream(context.Context, Uni_ClientStreamStream) error
 	ServerStream(context.Context, *ServerStreamRequest, Uni_ServerStreamStream) error
 	BidiStream(context.Context, Uni_BidiStreamStream) error
+	GetFlashUser(context.Context, *GetFlashUserRequest, *GetFlashUserResponse) error
+	SaveFlashUser(context.Context, *SaveFlashUserRequest, *SaveFlashUserResponse) error
+	GetFlashSwap(context.Context, *GetFlashSwapRequest, *GetFlashSwapResponse) error
+	Sign(context.Context, *SignRequest, *SignResponse) error
+	CheckSign(context.Context, *CheckSignRequest, *CheckSignResponse) error
+	Approve(context.Context, *ApproveRequest, *ApproveResponse) error
+	Flash(context.Context, *FlashRequest, *FlashResponse) error
+	FlashBuy(context.Context, *FlashBuyRequest, *FlashBuyResponse) error
+	FlashBuyAuto(context.Context, *FlashBuyAutoRequest, *FlashBuyAutoResponse) error
 }
 
 func RegisterUniHandler(s server.Server, hdlr UniHandler, opts ...server.HandlerOption) error {
@@ -235,6 +344,15 @@ func RegisterUniHandler(s server.Server, hdlr UniHandler, opts ...server.Handler
 		ClientStream(ctx context.Context, stream server.Stream) error
 		ServerStream(ctx context.Context, stream server.Stream) error
 		BidiStream(ctx context.Context, stream server.Stream) error
+		GetFlashUser(ctx context.Context, in *GetFlashUserRequest, out *GetFlashUserResponse) error
+		SaveFlashUser(ctx context.Context, in *SaveFlashUserRequest, out *SaveFlashUserResponse) error
+		GetFlashSwap(ctx context.Context, in *GetFlashSwapRequest, out *GetFlashSwapResponse) error
+		Sign(ctx context.Context, in *SignRequest, out *SignResponse) error
+		CheckSign(ctx context.Context, in *CheckSignRequest, out *CheckSignResponse) error
+		Approve(ctx context.Context, in *ApproveRequest, out *ApproveResponse) error
+		Flash(ctx context.Context, in *FlashRequest, out *FlashResponse) error
+		FlashBuy(ctx context.Context, in *FlashBuyRequest, out *FlashBuyResponse) error
+		FlashBuyAuto(ctx context.Context, in *FlashBuyAutoRequest, out *FlashBuyAutoResponse) error
 	}
 	type Uni struct {
 		uni
@@ -374,4 +492,40 @@ func (x *uniBidiStreamStream) Recv() (*BidiStreamRequest, error) {
 		return nil, err
 	}
 	return m, nil
+}
+
+func (h *uniHandler) GetFlashUser(ctx context.Context, in *GetFlashUserRequest, out *GetFlashUserResponse) error {
+	return h.UniHandler.GetFlashUser(ctx, in, out)
+}
+
+func (h *uniHandler) SaveFlashUser(ctx context.Context, in *SaveFlashUserRequest, out *SaveFlashUserResponse) error {
+	return h.UniHandler.SaveFlashUser(ctx, in, out)
+}
+
+func (h *uniHandler) GetFlashSwap(ctx context.Context, in *GetFlashSwapRequest, out *GetFlashSwapResponse) error {
+	return h.UniHandler.GetFlashSwap(ctx, in, out)
+}
+
+func (h *uniHandler) Sign(ctx context.Context, in *SignRequest, out *SignResponse) error {
+	return h.UniHandler.Sign(ctx, in, out)
+}
+
+func (h *uniHandler) CheckSign(ctx context.Context, in *CheckSignRequest, out *CheckSignResponse) error {
+	return h.UniHandler.CheckSign(ctx, in, out)
+}
+
+func (h *uniHandler) Approve(ctx context.Context, in *ApproveRequest, out *ApproveResponse) error {
+	return h.UniHandler.Approve(ctx, in, out)
+}
+
+func (h *uniHandler) Flash(ctx context.Context, in *FlashRequest, out *FlashResponse) error {
+	return h.UniHandler.Flash(ctx, in, out)
+}
+
+func (h *uniHandler) FlashBuy(ctx context.Context, in *FlashBuyRequest, out *FlashBuyResponse) error {
+	return h.UniHandler.FlashBuy(ctx, in, out)
+}
+
+func (h *uniHandler) FlashBuyAuto(ctx context.Context, in *FlashBuyAutoRequest, out *FlashBuyAutoResponse) error {
+	return h.UniHandler.FlashBuyAuto(ctx, in, out)
 }

@@ -31,14 +31,9 @@ func TgSend(token string, chatID int64, message string) error {
 	return nil
 }
 
-func BookSend(token string, message string) error {
+func BookSend(token string, sendData string) error {
 	url := "https://open.feishu.cn/open-apis/bot/v2/hook/" + token //要访问的Url地址
 	context := "application/json"
-
-	sendData := `{
-		"msg_type": "text",
-		"content": {"text": "` + message + `"}
-	}`
 
 	result, err := http.Post(url, context, strings.NewReader(sendData))
 	if err != nil {

@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package sign;
+
+option go_package = "./proto;sign";
+
+service Sign {
+	rpc Sign(SignRequest) returns (SignResponse) {}
+	rpc CheckSign(CheckSignRequest) returns (CheckSignResponse) {}
+	rpc Call(CallRequest) returns (CallResponse) {}
+	rpc ClientStream(stream ClientStreamRequest) returns (ClientStreamResponse) {}
+	rpc ServerStream(ServerStreamRequest) returns (stream ServerStreamResponse) {}
+	rpc BidiStream(stream BidiStreamRequest) returns (stream BidiStreamResponse) {}
+}
+
+message SignRequest {
+	string message = 1;
+	string sign = 2;
+	string address = 3;
+}
+
+message SignResponse {
+	bool result = 1;
+}
+
+message CheckSignRequest {
+	string address = 1;
+}
+
+message CheckSignResponse {
+	bool result = 1;
+}
+
+message CallRequest {
+	string name = 1;
+}
+
+message CallResponse {
+	string msg = 1;
+}
+
+message ClientStreamRequest {
+	int64 stroke = 1;
+}
+
+message ClientStreamResponse {
+	int64 count = 1;
+}
+
+message ServerStreamRequest {
+	int64 count = 1;
+}
+
+message ServerStreamResponse {
+	int64 count = 1;
+}
+
+message BidiStreamRequest {
+	int64 stroke = 1;
+}
+
+message BidiStreamResponse {
+	int64 stroke = 1;
+}

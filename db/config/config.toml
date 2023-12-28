@@ -1,0 +1,6 @@
+[db]
+host                    = "8.210.97.145"
+port                    = 5001
+user                    = "root"
+password                = "password"
+db_name                 = "xdog-push"

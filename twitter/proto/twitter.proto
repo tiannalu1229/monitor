@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+package twitter;
+
+option go_package = "./proto;twitter";
+
+service Twitter {
+	rpc HotKeyWord(HotKeyWordRequest) returns (HotKeyWordResponse) {}
+	rpc EditHotKeyWordList(EditHotKeyWordListRequest) returns (EditHotKeyWordListResponse) {}
+	rpc DeleteHotKeyWordList(DeleteHotKeyWordListRequest) returns (DeleteHotKeyWordListResponse) {}
+	rpc Call(CallRequest) returns (CallResponse) {}
+	rpc ClientStream(stream ClientStreamRequest) returns (ClientStreamResponse) {}
+	rpc ServerStream(ServerStreamRequest) returns (stream ServerStreamResponse) {}
+	rpc BidiStream(stream BidiStreamRequest) returns (stream BidiStreamResponse) {}
+}
+
+message HotKeyWordRequest {
+	string name = 1;
+}
+
+message HotKeyWordResponse {
+	string msg = 1;
+}
+
+message EditHotKeyWordListRequest {
+	uint64 id = 1;
+	string listName = 2;
+	string listId = 3;
+	string botToken = 4;
+	int64 chatId = 5;
+	int64 isStart = 6;
+}
+
+message EditHotKeyWordListResponse {
+	string msg = 1;
+}
+
+message DeleteHotKeyWordListRequest {
+	uint64 id = 1;
+	string listName = 2;
+	string listId = 3;
+	string botToken = 4;
+	int64 chatId = 5;
+	int64 isStart = 6;
+}
+
+message DeleteHotKeyWordListResponse {
+	string msg = 1;
+}
+
+message CallRequest {
+	string name = 1;
+}
+
+message CallResponse {
+	string msg = 1;
+}
+
+message ClientStreamRequest {
+	int64 stroke = 1;
+}
+
+message ClientStreamResponse {
+	int64 count = 1;
+}
+
+message ServerStreamRequest {
+	int64 count = 1;
+}
+
+message ServerStreamResponse {
+	int64 count = 1;
+}
+
+message BidiStreamRequest {
+	int64 stroke = 1;
+}
+
+message BidiStreamResponse {
+	int64 stroke = 1;
+}

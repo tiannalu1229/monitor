@@ -1,0 +1,55 @@
+[out]
+host                    = "8.210.97.145"
+port                    = "5006"
+front                   = "univ2"
+
+[db]
+host                    = "127.0.0.1"
+port                    = 5432
+user                    = "postgres"
+password                = "szq520520"
+db_name                 = "xdog-push"
+
+[ctl]
+level = ["5m"]
+
+[5m.hot]
+uri                     = "http://8.210.97.145:5006/univ2/hot?dist=7d&level=5m&desc=true"
+min_vol                 = 5
+min_tx                  = 40
+min_trader              = 40
+hot_pool_min_eth        = 1.00
+tweet_increase          = 10
+
+[[5m.bot.vol]]
+    token = "0b9fd6d4-194b-427b-bc8a-4328204b6108"
+    chat_id = 0
+    name = "【V2】实时交易量监控"
+[[5m.bot.tx]]
+    token = "34e9039a-08aa-462f-b10a-669725942956"
+    chat_id = 0
+    name = "【V2】实时交易笔数监控"
+[[5m.bot.trader]]
+    token = "272dbf38-2b72-4ba6-801b-ad87f6ad5da4"
+    chat_id = 0
+    name = "【V2】实时交易人数监控"
+[[5m.bot.tweet]]
+    token = "f997952c-e807-4dc8-8a3b-df1d6d116192"
+    chat_id = 0
+    name = "【V2终极策略0.1】推特高频代币推送"
+[[5m.bot.mix]]
+    token = "a3a5ae16-730c-4355-b075-7c88e6f6979f"
+    chat_id = 0
+    name = "【V2】交易量+交易笔数"
+[[5m.bot.safe]]
+    token = "dd0ccb17-da80-4982-9c69-a4630958f593"
+    chat_id = 0
+    name = "闪电swap （首次推送+自动交易）"
+
+[new]
+new_uri                 = "http://8.210.97.145:5006/univ2/latest_pairs?dist=2h&min_reserve=1"
+new_token               = "7ac44ab2-65d9-49a3-a495-4ef339dc3971"
+new_chat_id             = 0
+
+[tweet]
+keyword_uri             = "http://8.210.97.145:5006/tweet-v2/search?q=keyword&only_count=true"

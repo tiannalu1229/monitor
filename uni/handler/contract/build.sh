@@ -1,0 +1,1 @@
+abigen --abi=ERC20.json --pkg=erc20 --out=./erc20/ERC20.go

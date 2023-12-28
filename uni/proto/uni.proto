@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "google/protobuf/timestamp.proto";
+
 package uni;
 
 option go_package = "./proto;uni";
@@ -9,6 +11,15 @@ service Uni {
 	rpc ClientStream(stream ClientStreamRequest) returns (ClientStreamResponse) {}
 	rpc ServerStream(ServerStreamRequest) returns (stream ServerStreamResponse) {}
 	rpc BidiStream(stream BidiStreamRequest) returns (stream BidiStreamResponse) {}
+	rpc GetFlashUser(GetFlashUserRequest) returns (GetFlashUserResponse) {}
+	rpc SaveFlashUser(SaveFlashUserRequest) returns (SaveFlashUserResponse) {}
+	rpc GetFlashSwap(GetFlashSwapRequest) returns (GetFlashSwapResponse) {}
+	rpc Sign(SignRequest) returns (SignResponse) {}
+	rpc CheckSign(CheckSignRequest) returns (CheckSignResponse) {}
+	rpc Approve(ApproveRequest) returns (ApproveResponse) {}
+	rpc Flash(FlashRequest) returns (FlashResponse) {}
+	rpc FlashBuy(FlashBuyRequest) returns (FlashBuyResponse) {}
+	rpc FlashBuyAuto(FlashBuyAutoRequest) returns (FlashBuyAutoResponse) {}
 }
 
 message CallRequest {
@@ -41,4 +52,159 @@ message BidiStreamRequest {
 
 message BidiStreamResponse {
 	int64 stroke = 1;
+}
+
+message SignRequest {
+	string message = 1;
+	string sign = 2;
+	string address = 3;
+}
+
+message SignResponse {
+	bool result = 1;
+}
+
+message CheckSignRequest {
+	string address = 1;
+}
+
+message CheckSignResponse {
+	bool result = 1;
+}
+
+message ApproveRequest {
+	string token = 1;
+	string message = 2;
+	string sign = 3;
+	string address = 4;
+}
+
+message ApproveResponse {
+	string msg = 1;
+}
+
+message FlashRequest {
+	string message = 1;
+	string sign = 2;
+	string address = 3;
+	string token = 4;
+	float amount = 5;
+	string command = 6;
+}
+
+message FlashResponse {
+	string msg = 1;
+}
+
+message Pool {
+	float liquidity = 1;
+	float vols = 2;
+	int64 txs = 3;
+	int64 traders = 4;
+	string age = 5;
+	bool isTransferPause = 6;
+	bool isSlippageModifiable = 7;
+	bool isBlackList = 8;
+	bool isWhiteList = 9;
+	bool isCoolDown = 10;
+	float buyTax = 11;
+	float sellTax = 12;
+	bool isBuy = 13;
+	bool isSellAll = 14;
+	string token = 15;
+	float price = 16;
+	string symbol = 17;
+	int64 twitter = 18;
+	bool hiddenOwner = 19;
+}
+
+message FlashBuyAutoRequest {
+	Pool pool = 1;
+}
+
+message FlashBuyAutoResponse {
+	string msg = 1;
+}
+
+message FlashBuyRequest {
+	string token = 1;
+	float amount = 2;
+}
+
+message FlashBuyResponse {
+	string msg = 1;
+}
+
+message User{
+	string address = 1;
+	int64 turn = 2;
+	string privateKey = 3;
+	float maxPerSwap = 4;
+	float poolPercent = 5;
+	float liquidity = 6;
+	float vols = 7;
+	int64 txs = 8;
+	int64 traders = 9;
+	int64 gasPrice = 10;
+	string rpc = 11;
+	string receipt = 12;
+	int64 age = 13;
+	int64 level = 14;
+	bool isCoolDown = 15;
+	bool isTransferPause = 16;
+	bool isSlippageModifiable = 17;
+	bool isBlackList = 18;
+	bool isWhiteList = 19;
+	float buyTax = 20;
+	float sellTax = 21;
+	bool isBuy = 22;
+	bool isSellAll = 23;
+	int64 slippage = 24;
+	int64 twitter = 25;
+	bool hiddenOwner = 26;
+}
+
+message GetFlashUserRequest {
+	string message = 1;
+	string sign = 2;
+	string address = 3;
+}
+
+message GetFlashUserResponse {
+	User user = 1;
+	string msg = 2;
+}
+
+message SaveFlashUserRequest {
+	string message = 1;
+	string sign = 2;
+	string address = 3;
+	User user = 4;
+}
+
+message SaveFlashUserResponse {
+	string msg = 1;
+}
+
+message Swap {
+	string token = 1;
+	string symbol = 2;
+	string cost = 3;
+	string buy = 4;
+	string now = 5;
+	string price = 6;
+	google.protobuf.Timestamp buyTime = 7;
+	string hash = 8;
+	int64 isSell = 9;
+}
+
+message GetFlashSwapRequest {
+	string message = 1;
+	string sign = 2;
+	string address = 3;
+}
+
+message GetFlashSwapResponse {
+	repeated Swap swap = 1;
+	string msg = 2;
 }

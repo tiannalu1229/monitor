@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+package db;
+
+option go_package = "./proto;db";
+
+service Db {
+	rpc Call(CallRequest) returns (CallResponse) {}
+	rpc ClientStream(stream ClientStreamRequest) returns (ClientStreamResponse) {}
+	rpc ServerStream(ServerStreamRequest) returns (stream ServerStreamResponse) {}
+	rpc BidiStream(stream BidiStreamRequest) returns (stream BidiStreamResponse) {}
+	rpc GetPush(GetPushRequest) returns (GetPushResponse) {}
+	rpc GetPushDetail(GetPushDetailRequest) returns (GetPushDetailResponse) {}
+}
+
+message CallRequest {
+	string name = 1;
+}
+
+message CallResponse {
+	string msg = 1;
+}
+
+message ClientStreamRequest {
+	int64 stroke = 1;
+}
+
+message ClientStreamResponse {
+	int64 count = 1;
+}
+
+message ServerStreamRequest {
+	int64 count = 1;
+}
+
+message ServerStreamResponse {
+	int64 count = 1;
+}
+
+message BidiStreamRequest {
+	int64 stroke = 1;
+}
+
+message BidiStreamResponse {
+	int64 stroke = 1;
+}
+
+message GetPushRequest {
+	int64 limit = 1;
+	int64 page = 2;
+	map<string, string> param = 3;
+}
+
+message PushData {
+	string symbol = 1;
+	string token = 2;
+	float vol = 3;
+	int64 trader = 4;
+	int64 tx = 5;
+	int64 tweet = 6;
+	float liquidity = 7;
+	string age = 8;
+	int64 times = 9;
+}
+
+message GetPushResponse {
+	repeated PushData pushData = 1;
+}
+
+message GetPushDetailRequest {
+	map<string, string> param = 1;
+}
+
+message PushDetailData {
+	string time = 1;
+	string level = 2;
+	float vol = 3;
+	int64 trader = 4;
+	int64 tx = 5;
+	int64 tweet = 6;
+	float liquidity = 7;
+	float price = 8;
+	string age = 9;
+	int64 times = 10;
+	int64 type = 11;
+}
+
+message GetPushDetailResponse {
+	repeated PushDetailData pushDetailData = 1;
+}

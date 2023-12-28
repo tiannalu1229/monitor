@@ -1,0 +1,7 @@
+consul -- consul-register -- 12000
+bot -- msg-bot -- 12001
+uni -- flashswap -- 12003
+db -- database -- 12004
+sign -- sign -- 12010
+security -- security -- 12088
+export -- export -- 12099

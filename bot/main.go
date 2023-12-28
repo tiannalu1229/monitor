@@ -18,7 +18,7 @@ const (
 )
 
 var (
-	service = "bot"
+	service = "msg-bot"
 	host    = "127.0.0.1"
 	port    = ":12001"
 	version = "latest"
@@ -34,11 +34,6 @@ func main() {
 		micro.Version(version),
 	)
 
-	// Register handler
-	if err := pb.RegisterBotHandler(srv.Server(), new(handler.Bot)); err != nil {
-		logger.Fatal(err)
-	}
-
 	// Register to consul
 	c := consul.NewConsulService("consul-register", srv.Client())
 	c.RegisterServiceStream(context.Background(), &consul.RegisterServiceStreamRequest{
@@ -48,6 +43,11 @@ func main() {
 		Port:        12001,
 		Tag:         "push-bot",
 	})
+
+	// Register handler
+	if err := pb.RegisterBotHandler(srv.Server(), new(handler.Bot)); err != nil {
+		logger.Fatal(err)
+	}
 
 	// Run service
 	if err := srv.Run(); err != nil {

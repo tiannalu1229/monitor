@@ -1,2 +1,24 @@
 go-micro new service [name]
 make init proto update tidy
+
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o uni-push main.go
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o uni-new-linux uni-new.go
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o flash-swap-linux main.go
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o db-linux main.go
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o security-linux main.go
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o export-linux main.go
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o twitter-linux main.go
+
+sudo scp -r -i ainft.pem /Users/pengyun/go/src/github.com/tiannalu1229/monitor/bot/client/uni-push root@8.210.97.145:/root/monitor-cli/client/uni
+sudo scp -r -i ainft.pem /Users/pengyun/go/src/github.com/tiannalu1229/monitor/db/db-linux root@8.210.97.145:/root/monitor-cli/server/db
+sudo scp -r -i ainft.pem /Users/pengyun/go/src/github.com/tiannalu1229/monitor/security/security-linux root@8.210.97.145:/root/monitor-cli/server/security
+sudo scp -r -i ainft.pem /Users/pengyun/go/src/github.com/tiannalu1229/monitor/export/export-linux root@8.210.97.145:/root/monitor-cli/server/export
+sudo scp -r -i ainft.pem /Users/pengyun/go/src/github.com/tiannalu1229/monitor/uni/flash-swap-linux root@8.210.97.145:/root/monitor-cli/server/export
+sudo scp -r -i ainft.pem /Users/pengyun/go/src/github.com/tiannalu1229/monitor/bot/twitter-client/config root@8.210.97.145:/root/monitor-cli/client/twitter
+
+nohup ./flash-swap-linux > flash-swap-linux.log 2>&1 &
+nohup ./uni-push > uni-push.log 2>&1 &
+nohup ./db-linux > db.log 2>&1 &
+nohup ./security-linux > security.log 2>&1 &
+nohup ./export-linux > export.log 2>&1 &
+nohup ./twitter-linux > twitter.log 2>&1 &

@@ -1,9 +1,0 @@
-[out]
-host                    = "8.210.97.145"
-port                    = "5006"
-front                   = "univ2"
-
-[hot]
-uri                     = "http://8.210.97.145:5006/univ2/hot?dist=1d&level=5m&desc=true"
-bot_token               = "0b9fd6d4-194b-427b-bc8a-4328204b6108"
-chat_id                 = 0

@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package security;
+
+option go_package = "./proto;security";
+
+service Security {
+	rpc Call(CallRequest) returns (CallResponse) {}
+	rpc ClientStream(stream ClientStreamRequest) returns (ClientStreamResponse) {}
+	rpc ServerStream(ServerStreamRequest) returns (stream ServerStreamResponse) {}
+	rpc BidiStream(stream BidiStreamRequest) returns (stream BidiStreamResponse) {}
+	rpc CheckToken(CheckTokenRequest) returns (CheckTokenResponse) {}
+}
+
+message CallRequest {
+	string name = 1;
+}
+
+message CallResponse {
+	string msg = 1;
+}
+
+message ClientStreamRequest {
+	int64 stroke = 1;
+}
+
+message ClientStreamResponse {
+	int64 count = 1;
+}
+
+message ServerStreamRequest {
+	int64 count = 1;
+}
+
+message ServerStreamResponse {
+	int64 count = 1;
+}
+
+message BidiStreamRequest {
+	int64 stroke = 1;
+}
+
+message BidiStreamResponse {
+	int64 stroke = 1;
+}
+
+message CheckTokenRequest {
+	string token = 1;
+}
+
+message CheckTokenResponse {
+	float buyTax = 1;
+	float sellTax = 2;
+	bool owner = 3;
+	bool honey = 4;
+	bool pause = 5;
+	bool lock = 6;
+	bool coolDown = 7;
+	bool mint = 8;
+	int64 score = 9;
+	bool openSource = 10;
+	bool proxy = 11;
+	bool transferPause = 12;
+	bool slippageModifiable = 13;
+	bool blackList = 14;
+	bool whiteList = 15;
+	bool isBuy = 16;
+	bool isSellAll = 17;
+	bool hiddenOwner = 18;
+}

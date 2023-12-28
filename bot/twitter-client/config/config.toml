@@ -1,0 +1,38 @@
+[db]
+host                    = "8.210.97.145"
+port                    = 5001
+user                    = "root"
+password                = "password"
+db_name                 = "xdog-push"
+
+[param.new]
+	uri = "http://8.210.97.145:5006/tweet-v2/spe_analyse?dist=1d&show_ids=true&min_count=%min%&list_id=%list%"
+[[param.new.bot]]
+    token = "2be32589-8ac4-4460-a9c7-a155e6e1c9c8"
+    chat_id = 0
+    name = "推特热词推送"
+[[param.new.check]]
+    name = "alpha kol"
+    list = "1729752771971404017"
+    n = 2
+[[param.new.check]]
+    name = "meme token"
+    list = "1729003256192659732"
+    n = 5
+[[param.new.check]]
+    name = "sol"
+    list = "1733174750917378358"
+    n = 2
+[[param.new.check]]
+    name = "铭文"
+    list = "1729004035615973495"
+    n = 2
+[[param.new.check]]
+    name = "depin"
+    list = "1737727885467959337"
+    n = 2
+[[param.observe]]
+    uri = "/tweet-v2/by?list_id=%list_id%&page_num=1&page_size=50"
+[[param.observe.check]]
+    name = "Super Kol"
+    list = "1729460081446863028"

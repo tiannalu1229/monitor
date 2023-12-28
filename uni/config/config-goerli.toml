@@ -1,0 +1,25 @@
+[redis]
+host                    = "8.210.97.145"
+port                    = 5005
+password                = "password"
+db                      = 0
+
+[db]
+host                    = "127.0.0.1"
+port                    = 5432
+user                    = "postgres"
+password                = "szq520520"
+db_name                 = "xdog-push"
+
+[param]
+universal                   = "0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD"
+uni_router                  = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
+private_key                 = "9ce431971bad21c96c0b9d3016fa30f219cb4d3e9c4dfed20a4c7c610fb1a28a"
+http_client                 = "https://ethereum-goerli.publicnode.com"
+user                        = "0xcd16138863653a048Ea3c262C6849870fc36B8fB"
+gas_price                   = 50000000000
+gas_limit                   = 400000
+chain_id                    = 5
+eth_address                 = "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6"
+eth_byte                    = "000000000000000000000000b4fbf271143f4fbf7b91a5ded31805e42b2208d6"
+tx_bot                      = "9e15c87e-5d57-457c-b8bf-85c878dda70c"

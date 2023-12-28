@@ -1,0 +1,5 @@
+[redis]
+host                    = "8.210.97.145"
+port                    = 5005
+password                = "password"
+db                      = 0

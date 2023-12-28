@@ -1,0 +1,12 @@
+[db]
+host                    = "127.0.0.1"
+port                    = 5432
+user                    = "postgres"
+password                = "szq520520"
+db_name                 = "xdog-push"
+
+[uri]
+pair                    = "http://8.210.97.145:5006/univ2/pair/"
+
+[param]
+sniffer_api_key         = "9f798a02488992f4ca09f9f2580ae445d3a0fe7d"
